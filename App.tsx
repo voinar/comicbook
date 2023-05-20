@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, FlatList } from 'react-native';
 import SplashScreen from './pages/SplashScreen';
 import MainView from './pages/MainView';
 import { useEffect, useState } from 'react';
@@ -24,7 +24,9 @@ export default function App() {
         ) : (
           <>
             {/* main section */}
-            <MainView />
+            <ScrollView style={styles.scrollView}>
+              <MainView />
+            </ScrollView>
           </>
         )}
       </View>
@@ -37,7 +39,12 @@ const styles = StyleSheet.create({
     flex: 1,
     // paddingTop: 40,
     backgroundColor: '#EDEEEE',
+    fontColor: '#3E1B16',
     // alignItems: 'center',
     // justifyContent: 'center',
+  },
+  scrollView: {
+    // backgroundColor: 'pink',
+    marginHorizontal: 10,
   },
 });
