@@ -1,9 +1,10 @@
 import { View, Button } from 'react-native';
-import ThumbnailImage from '../../components/ThumbnailImage';
+import ThumbnailImage from '../ThumbnailImage';
 import useImagesBrowser from '../../hooks/useImagesBrowser';
+import styles from './styles';
 
 // renders a list of images. list is seeded from an array of numbers. this array is then mapped by indexes and images are downloaded and displayed. eg.: index 3 maps to image number 3 in json endpoint.
-export default ImagesBrowser = () => {
+const ImagesBrowser = () => {
   const { defaultIncrement, defaultRange, imageIds, setImageIds, loadMore } =
     useImagesBrowser();
 
@@ -24,3 +25,5 @@ export default ImagesBrowser = () => {
     </View>
   );
 };
+
+export default ImagesBrowser;

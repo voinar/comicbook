@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginLeft: 10,
@@ -12,14 +12,6 @@ export default styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#EDEEEE',
   },
-  navIcon: {
-    width: 50,
-    height: 42,
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: 100,
-  },
   search: {
     flex: 1,
     alignItems: 'center',
@@ -30,3 +22,5 @@ export default styles = StyleSheet.create({
     backgroundColor: '#3E1B16',
   },
 });
+
+export default styles;

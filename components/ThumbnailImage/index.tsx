@@ -1,13 +1,12 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ActivityIndicator,
-} from 'react-native';
+import { Text, View, Image, ActivityIndicator } from 'react-native';
 import { useQuery } from 'react-query';
+import styles from './styles';
 
-export default ThumbnailImage = ({ imageId }) => {
+interface ErrorWithMessage {
+  message: string;
+}
+
+const ThumbnailImage = ({ imageId }) => {
   const { isLoading, error, data } = useQuery({
     queryKey: ['imageThumbnails', imageId],
     queryFn: () =>
@@ -16,7 +15,12 @@ export default ThumbnailImage = ({ imageId }) => {
       ),
   });
   if (isLoading) return <ActivityIndicator size="large" color="#00ff00" />;
-  if (error) return <Text>An error has occurred: + {error.message}</Text>;
+  if (error)
+    return (
+      <Text>
+        An error has occurred: + {(error as ErrorWithMessage).message}
+      </Text>
+    );
 
   return (
     <View>
@@ -26,16 +30,4 @@ export default ThumbnailImage = ({ imageId }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  thumbnailText: {
-    fontSize: 18,
-    marginBottom: 6,
-  },
-  thumbnailImage: {
-    borderWidth: 2,
-    borderColor: '#3E1B16',
-    borderRadius: 10,
-    width: '100%',
-    height: 300,
-  },
-});
+export default ThumbnailImage;

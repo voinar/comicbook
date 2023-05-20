@@ -6,7 +6,7 @@ const MainView = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.search}>Search</Text>
-      <ImagesBrowser style={styles.imagesBrowser} />
+      <ImagesBrowser />
     </View>
   );
 };

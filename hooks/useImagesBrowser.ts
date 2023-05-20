@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default useImagesBrowser = () => {
+const useImagesBrowser = () => {
   const defaultIncrement = 32; //used to increment the number of indexes when extending the seed array.
   const defaultRange = Array.from(Array(defaultIncrement).keys()).slice(1);
   const [imageIds, setImageIds] = useState(defaultRange);
@@ -14,3 +14,5 @@ export default useImagesBrowser = () => {
 
   return { defaultIncrement, defaultRange, imageIds, setImageIds, loadMore };
 };
+
+export default useImagesBrowser;

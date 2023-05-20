@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [splashVisibility, setSplashVisibility] = useState(true);
+  const [splashVisibility, setSplashVisibility] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
