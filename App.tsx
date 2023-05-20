@@ -1,20 +1,40 @@
-import { StyleSheet, Text, View, Image, ScrollView, FlatList } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
+import { useEffect, useState } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from './pages/SplashScreen';
 import MainView from './pages/MainView';
-import { useEffect, useState } from 'react';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import styles from './styles';
 
 const queryClient = new QueryClient();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [splashVisibility, setSplashVisibility] = useState(false);
+  const [splashVisibility, setSplashVisibility] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setSplashVisibility(false);
-    }, 4000);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
+
+  const MainViewContainer = () => {
+    return (
+      <ScrollView style={styles.scrollView}>
+        <MainView />
+      </ScrollView>
+    );
+  };
+
+  const SelectedImageContainer = () => {
+    return (
+      <View>
+        <Text>selected image container</Text>
+      </View>
+    );
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -22,29 +42,22 @@ export default function App() {
         {splashVisibility ? (
           <SplashScreen />
         ) : (
-          <>
-            {/* main section */}
-            <ScrollView style={styles.scrollView}>
-              <MainView />
-            </ScrollView>
-          </>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Home"
+                component={MainViewContainer}
+                options={{ title: 'Browse comics' }}
+              />
+              <Stack.Screen
+                name="SelectedImageContainer"
+                component={SelectedImageContainer}
+                options={{ title: 'View details' }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
         )}
       </View>
     </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // paddingTop: 40,
-    backgroundColor: '#EDEEEE',
-    fontColor: '#3E1B16',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-  scrollView: {
-    // backgroundColor: 'pink',
-    marginHorizontal: 10,
-  },
-});
