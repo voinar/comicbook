@@ -1,4 +1,4 @@
-import { Text, View, Image, ActivityIndicator } from 'react-native';
+import { Text, ActivityIndicator } from 'react-native';
 import { useQuery } from 'react-query';
 
 interface QueryError {

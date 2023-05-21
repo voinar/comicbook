@@ -1,8 +1,8 @@
 import { Text, View, Image, Button } from 'react-native';
-import styles from './styles';
 import useThumbnailImage from '../../hooks/useThumbnailImage';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { ImagePreviewContext } from '../../context/Contexts';
+import styles from './styles';
 
 interface ThumbnailData {
   alt: string;
@@ -16,9 +16,7 @@ const ThumbnailImage = ({ imageId, navigation }) => {
 
   return (
     <View>
-      {/* <Text style={styles.thumbnailText}>{imageId}</Text> */}
-      <Text>{useContext(ImagePreviewContext)}</Text>
-      <Text style={styles.thumbnailText}>{(data as ThumbnailData)?.alt}</Text>
+      <Text style={styles.thumbnailText}>[{imageId}] {(data as ThumbnailData)?.alt}</Text>
 
       <Image
         style={styles.thumbnailImage}
@@ -28,10 +26,10 @@ const ThumbnailImage = ({ imageId, navigation }) => {
 
       <Button
         onPress={() =>
-          navigation.navigate('SelectedImageContainer', { imageId: imageId })
+          navigation.navigate('ComicDetails', { imageId: imageId })
         }
-        title="View fullscreen"
-        color="#3E1B16"
+        title="Details"
+        color="#77C5E7"
         accessibilityLabel="View fullscreen"
       />
     </View>

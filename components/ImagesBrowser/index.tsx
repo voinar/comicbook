@@ -18,7 +18,7 @@ const ImagesBrowser = ({ navigation }) => {
       <Button
         onPress={loadMore}
         title="Load More 👀"
-        color="#3E1B16"
+        color="#CF4B32"
         accessibilityLabel="View more comics"
       />
     </View>

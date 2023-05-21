@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   thumbnailImage: {
+    marginBottom: 10,
     borderWidth: 2,
     borderColor: '#3E1B16',
     borderRadius: 10,
