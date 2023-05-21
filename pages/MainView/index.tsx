@@ -5,7 +5,7 @@ import styles from './styles';
 const MainView = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.search}>Search</Text>
+      {/* <Text style={styles.search}>Search</Text> */}
       <ImagesBrowser />
     </View>
   );
