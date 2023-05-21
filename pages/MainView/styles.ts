@@ -12,15 +12,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#EDEEEE',
   },
-  search: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10,
-    height: 40,
-    backgroundColor: '#3E1B16',
-  },
 });
 
 export default styles;

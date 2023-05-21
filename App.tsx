@@ -1,5 +1,7 @@
 import { Text, View, ScrollView } from 'react-native';
 import { useEffect, useState } from 'react';
+import { ImagePreviewContext } from './context/Contexts.js';
+
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -12,6 +14,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [splashVisibility, setSplashVisibility] = useState(false);
+  const [previewImageId, setPreviewImageId] = useState(1);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,18 +23,20 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  const MainViewContainer = () => {
+  const MainViewContainer = ({ navigation }) => {
     return (
       <ScrollView style={styles.scrollView}>
-        <MainView />
+        <MainView navigation={navigation} />
       </ScrollView>
     );
   };
 
-  const SelectedImageContainer = () => {
+  const SelectedImageContainer = ({ navigation, route }) => {
     return (
       <View>
-        <Text>selected image container</Text>
+        <Text>
+          selected image container{JSON.stringify(route.params.imageId)}
+        </Text>
       </View>
     );
   };
@@ -43,18 +48,20 @@ export default function App() {
           <SplashScreen />
         ) : (
           <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Home"
-                component={MainViewContainer}
-                options={{ title: 'Browse comics' }}
-              />
-              <Stack.Screen
-                name="SelectedImageContainer"
-                component={SelectedImageContainer}
-                options={{ title: 'View details' }}
-              />
-            </Stack.Navigator>
+            <ImagePreviewContext.Provider value={previewImageId}>
+              <Stack.Navigator>
+                <Stack.Screen
+                  name="Home"
+                  component={MainViewContainer}
+                  options={{ title: 'Browse comics' }}
+                />
+                <Stack.Screen
+                  name="SelectedImageContainer"
+                  component={SelectedImageContainer}
+                  options={{ title: 'View details' }}
+                />
+              </Stack.Navigator>
+            </ImagePreviewContext.Provider>
           </NavigationContainer>
         )}
       </View>
