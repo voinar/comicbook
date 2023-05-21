@@ -3,7 +3,7 @@ import ThumbnailImage from '../ThumbnailImage';
 import useImagesBrowser from '../../hooks/useImagesBrowser';
 import styles from './styles';
 
-// renders a list of images. list is seeded from an array of numbers. this array is then mapped by indexes and images are downloaded and displayed. eg.: index 3 maps to image number 3 in json endpoint.
+// Renders a list of images. List is seeded from an array of numbers. This array is then mapped by indexes and images are downloaded and displayed. Eg.: index 3 maps to image number 3 in json endpoint.
 const ImagesBrowser = ({ navigation }) => {
   const { imageIds, loadMore } = useImagesBrowser();
 

@@ -12,9 +12,8 @@ interface ComicDetailsProps {
   };
 }
 
-const ComicDetails = ({
-  route,
-}: ComicDetailsProps) => {
+// Component displays expanded information on selected image.
+const ComicDetails = ({ route }: ComicDetailsProps) => {
   const imageId = route.params.imageId;
   const { data } = useThumbnailImage(imageId);
   const unableToLoad = 'unable to load information';
@@ -23,17 +22,19 @@ const ComicDetails = ({
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <Text style={styles.titleText}>{data?.safe_title || unableToLoad}</Text>
+
         <Text style={styles.subtitleText}>
           Id: {route.params.imageId || unableToLoad} | Year:{' '}
           {data.year || unableToLoad}
         </Text>
+
         <AutoHeightImage
           width={360}
           style={styles.fullImage}
           source={{ uri: data?.img }}
           alt={data?.transcript}
         />
-        <Text style={styles.subtitleText}>Description:</Text>
+
         <View>
           <Text style={styles.captionText}>{data.alt || unableToLoad}</Text>
         </View>
@@ -41,6 +42,5 @@ const ComicDetails = ({
     </View>
   );
 };
-
 
 export default ComicDetails;

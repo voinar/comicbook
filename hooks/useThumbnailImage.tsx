@@ -5,6 +5,7 @@ interface QueryError {
   message: string;
 }
 
+// Used to fetch data via useQuery. Can be either used to render a list on images inside MainView and/or fetch a single image and its data inside the ComicDetails page.
 const useThumbnailImage = (imageId: number) => {
   const { isLoading, error, data } = useQuery({
     queryKey: ['imageThumbnails', imageId],

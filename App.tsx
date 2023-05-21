@@ -1,4 +1,4 @@
-import { View, ScrollView } from 'react-native';
+import { View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,6 +12,8 @@ const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+  // Controls the conditional rendering of the splash screen.
   const [splashVisibility, setSplashVisibility] = useState(true);
 
   useEffect(() => {
